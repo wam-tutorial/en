@@ -8,7 +8,7 @@ book:
   subtitle: "An ecologist guide"
   description: |
     Tutorial on how to fit an animal model using multiple R packages.
-    Updated and extended tutorials from An ecologist guide to animal model [@wilson2010].
+    Updated and extended tutorials from An ecologist guide to animal model @wilson2010.
   cover-image: images/cover/cover_en.png
   author: 
     - Julien Martin

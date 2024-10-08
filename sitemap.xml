@@ -6,7 +6,7 @@
   </url>
   <url>
     <loc>https://wam-tutorial.github.io/en/01_intro.html</loc>
-    <lastmod>2024-10-08T17:40:05.577Z</lastmod>
+    <lastmod>2024-10-08T18:47:53.854Z</lastmod>
   </url>
   <url>
     <loc>https://wam-tutorial.github.io/en/02_01-univ_asreml.html</loc>
@@ -18,7 +18,7 @@
   </url>
   <url>
     <loc>https://wam-tutorial.github.io/en/02_04-univ_brms.html</loc>
-    <lastmod>2024-10-08T17:12:37.046Z</lastmod>
+    <lastmod>2024-10-08T18:31:02.737Z</lastmod>
   </url>
   <url>
     <loc>https://wam-tutorial.github.io/en/03_01-biv_asreml.html</loc>
@@ -26,11 +26,11 @@
   </url>
   <url>
     <loc>https://wam-tutorial.github.io/en/03_03-biv_mcmcglmm.html</loc>
-    <lastmod>2024-10-08T17:12:37.047Z</lastmod>
+    <lastmod>2024-10-08T18:31:02.740Z</lastmod>
   </url>
   <url>
     <loc>https://wam-tutorial.github.io/en/03_04-biv_brms.html</loc>
-    <lastmod>2024-10-08T17:12:37.047Z</lastmod>
+    <lastmod>2024-10-08T18:31:02.740Z</lastmod>
   </url>
   <url>
     <loc>https://wam-tutorial.github.io/en/04_01-rep_asreml.html</loc>
@@ -53,6 +53,10 @@
     <lastmod>2024-10-08T17:12:37.048Z</lastmod>
   </url>
   <url>
+    <loc>https://wam-tutorial.github.io/en/99_data.html</loc>
+    <lastmod>2024-10-08T20:23:24.338Z</lastmod>
+  </url>
+  <url>
     <loc>https://wam-tutorial.github.io/en/03_00-biv.html</loc>
     <lastmod>2024-10-08T17:12:37.047Z</lastmod>
   </url>
@@ -66,10 +70,10 @@
   </url>
   <url>
     <loc>https://wam-tutorial.github.io/en/How-to-fit-an-animal-model.pdf</loc>
-    <lastmod>2024-10-08T17:43:06.301Z</lastmod>
+    <lastmod>2024-10-08T20:26:21.372Z</lastmod>
   </url>
   <url>
     <loc>https://wam-tutorial.github.io/en/How-to-fit-an-animal-model.epub</loc>
-    <lastmod>2024-10-08T17:43:12.469Z</lastmod>
+    <lastmod>2024-10-08T20:26:27.740Z</lastmod>
   </url>
 </urlset>

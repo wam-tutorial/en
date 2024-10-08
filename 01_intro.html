@@ -130,8 +130,12 @@ gtag('config', 'G-LLHQEESR2L', { 'anonymize_ip': true});
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-languages">    
         <li>
-    <a class="dropdown-item" href="https://wam-tutorial.github.io/fr">
+    <a class="dropdown-item" href="https://wam-tutorial.github.io/fr/01_intro.html">
  <span class="dropdown-text">Français</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://wam-tutorial.github.io/es">
+ <span class="dropdown-text">Español</span></a>
   </li>  
     </ul>
   </li>
@@ -308,6 +312,23 @@ gtag('config', 'G-LLHQEESR2L', { 'anonymize_ip': true});
  <span class="menu-text">References</span></a>
   </div>
 </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./99_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Data used in this book</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -366,11 +387,11 @@ gtag('config', 'G-LLHQEESR2L', { 'anonymize_ip': true});
 <li>gryphonped.csv: data on the associated pedigree of the data gryphon</li>
 </ul>
 <p>In addition, some models presented in the tutorials can take a while to run (sometimes &gt; 1 hour), thus we are also providing the model outputs to allow you continue the tutorial without waiting for the model to run. (But you are free to run models)</p>
-<p>The files are available <a href="https://github.com/JulienGAMartin/wam_tuto/tree/master/data">here</a> We recommend to save the data and Rdata files in a subfolder <code>data</code> in the folder you will use as your working directory for R and where you will save your R scripts. It should be noted that the tutorial are using this structure to read or save data.</p>
+<p>The files are available <a href="./99_data.html">here</a>. We recommend to save the data and Rdata files in a subfolder <code>data</code> in the folder you will use as your working directory for R and where you will save your R scripts. It should be noted that the tutorial are using this structure to read or save data.</p>
 </section>
 <section id="notes-on-data-and-pedigree" class="level3" data-number="1.1.2">
 <h3 data-number="1.1.2" class="anchored" data-anchor-id="notes-on-data-and-pedigree"><span class="header-section-number">1.1.2</span> Notes on data and pedigree</h3>
-<p>It is always important to take time to think carefully about the strengths and potential limitations of your pedigree information before embarking on quantitative genetic analyses. Pedigree Viewer, written by Brian Kinghorn, is an extremely useful application for visualizing pedigrees, and can be downloaded from: http://www-personal.une.edu.au/~bkinghor/pedigree.htm. <code>pedtricks</code> an R package deveopped by <span class="citation" data-cites="pedtricks">(<a href="98_references.html#ref-pedtricks" role="doc-biblioref"><strong>pedtricks?</strong></a>)</span> and distributed through <a href="http://cran.r-project.org/">CRAN</a> can also be used for this and offers some nice additional features for visualizing pedigree structures and generating associated statistics. Before you begin running through the tutorials, we advise taking a moment to look at the pedigree files provided with them using Pedigree Viewer or pedtricks.</p>
+<p>It is always important to take time to think carefully about the strengths and potential limitations of your pedigree information before embarking on quantitative genetic analyses. Pedigree Viewer, written by Brian Kinghorn, is an extremely useful application for visualizing pedigrees, and can be downloaded from: http://www-personal.une.edu.au/~bkinghor/pedigree.htm. <code>pedtricks</code> an R package deveopped by <span class="citation" data-cites="pedtricks">Martin et al. (<a href="98_references.html#ref-pedtricks" role="doc-biblioref">2024</a>)</span> and distributed through <a href="http://cran.r-project.org/">CRAN</a> can also be used for this and offers some nice additional features for visualizing pedigree structures and generating associated statistics. Before you begin running through the tutorials, we advise taking a moment to look at the pedigree files provided with them using Pedigree Viewer or pedtricks.</p>
 </section>
 </section>
 <section id="r" class="level2" data-number="1.2">
@@ -400,6 +421,9 @@ gtag('config', 'G-LLHQEESR2L', { 'anonymize_ip': true});
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
 <div id="ref-MCMCglmm" class="csl-entry" role="listitem">
 Hadfield, J. D. 2010. <a href="https://www.jstatsoft.org/v33/i02/">MCMC methods for multi-response generalized linear mixed models: The <span>MCMCglmm</span> <span>R</span> package</a>. Journal of Statistical Software 33:1–22.
+</div>
+<div id="ref-pedtricks" class="csl-entry" role="listitem">
+Martin, J., M. Wolak, S. Johnston, and M. Morrissey. 2024. <a href="https://CRAN.R-project.org/package=pedtricks">Pedtricks: Visualize, summarize and simulate data from pedigrees</a>.
 </div>
 <div id="ref-wilson2010" class="csl-entry" role="listitem">
 Wilson, A. J., D. Réale, M. N. Clements, M. M. Morrissey, E. Postma, C. A. Walling, L. E. B. Kruuk, and D. H. Nussey. 2010. <a href="https://doi.org/10.1111/j.1365-2656.2009.01639.x">An ecologist’s guide to the animal model</a>. Journal of Animal Ecology 79:13–26.

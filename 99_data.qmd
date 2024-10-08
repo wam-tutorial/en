@@ -1,0 +1,87 @@
+# Data used in this book {#sec-data-files}
+
+
+```{r}
+#| include: false
+#| cache: true
+ui_list <- function(vec) {
+  for (x in vec) {
+    cat("-", x, "\n")
+  }
+}
+
+datf <- data.frame(
+  Files = list.files("data/"),
+  link = list.files("data/", full.names = TRUE)
+)
+code <- data.frame(
+  Files = list.files("code/"),
+  link = list.files("code/", full.names = TRUE)
+)
+r_obj <- data.frame(
+  Files = list.files("r-obj/"),
+  link = list.files("r-obj/", full.names = TRUE)
+)
+if (file.exists("data/wamtuto-files.zip")) {
+  file.remove("data/wamtuto-files.zip")
+}
+zip("data/wamtuto-files.zip", c(datf$link, code$link, r_obj$link))
+```
+
+## All in one zip file
+
+All the data, code, and r-objects used in the book in a [**zip file**](./data/wamtuto-files.zip)
+
+## Data files
+
+```{r}
+#| echo: false
+#| output: asis
+#| cache: false
+apply(datf, 1, function(x) paste0("[", x[1], "](", x[2], ")")) |>
+  ui_list()
+```
+
+## R objects
+
+```{r}
+#| echo: false
+#| output: asis
+#| cache: false
+apply(r_obj, 1, function(x) paste0("[", x[1], "](", x[2], ")")) |>
+  ui_list()
+```
+
+## R code & functions
+
+```{r}
+#| echo: false
+#| eval: true
+#| output: asis
+#| cache: false
+apply(code, 1, function(x) paste0("[", x[1], "](", x[2], ")")) |>
+  ui_list() 
+```
+
+
+
+
+<!--
+check what is done for BIO8940
+
+use downlaod this to create nice downlaod options potentially
+
+```r
+path_files <- list.files(path = system.file("assets/css", package = "downloadthis"), full.names = TRUE)
+
+download_file(
+  path = path_files,
+  output_name = "Files from downloadthis",
+  button_label = "Download files",
+  button_type = "danger",
+  has_icon = TRUE,
+  icon = "fa fa-save",
+  self_contained = FALSE
+)
+```
+-->

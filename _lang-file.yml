@@ -35,8 +35,8 @@ book:
         menu:
         - href: https://wam-tutorial.github.io/fr
           text: Français
-#        - href: ../es
-#          text: Español
+        - href: https://wam-tutorial.github.io/es
+          text: Español
       - text: Extra resources
         menu:
           - text: WamWiki
@@ -70,6 +70,6 @@ book:
 #        - 04_05-rep_stan.qmd     
     - 05_code_cheatsheet.qmd
     - 98_references.qmd
-#  appendices:
-#    - 99_app_rep-lmer.qmd
+  appendices:
+    - 99_data.qmd
 

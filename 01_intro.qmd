@@ -40,6 +40,8 @@ You should check that you have the most current version of R and R packages. You
 
 ASReml-R is commercial software published by VSN international (<http://www.vsni.co.uk/software/asreml/>). This package is not free and requires a key access.
 Additional information and guide can be find in the [Asreml-R manual](https://asreml.kb.vsni.co.uk/wp-content/uploads/sites/3/2018/02/ASReml-R-Reference-Manual-4.pdf)
+VSNI has provided a 12 months free Asreml-R licence to support the development of this guide. In addition, VSNI also features a blog with data analytics guides and opinions (https://vsni.co.uk/blogs/) as well as private courses.
+
 
 #### gremlin
 

@@ -14,7 +14,7 @@
     "href": "index.html#citing-the-book",
     "title": "How to fit an animal model",
     "section": "Citing the book",
-    "text": "Citing the book\nJulien Martin & Mathieu Videlier (2024). How to fit an Animal model? A guide for evolutionary ecologist using multiple R packages. Version: 1.0.0 (2024-10-21). https://doi.org/10.5281/zenodo.10891227",
+    "text": "Citing the book\nJulien Martin & Mathieu Videlier (2024). How to fit an Animal model? A guide for evolutionary ecologist using multiple R packages. Version: 1.0.0 (2025-01-22). https://doi.org/10.5281/zenodo.10891227",
     "crumbs": [
       "Preface"
     ]
@@ -64,7 +64,7 @@
     "href": "01_intro.html",
     "title": "1  Introduction",
     "section": "",
-    "text": "1.1 Data",
+    "text": "1.1 Data\nThe book is provides a series of tutorials (and accompanying data files) to fit animal model in R using different packages (ASReml-R, gremlin, MCMCglmm and brms/stan) . You will need to carefully follow the instructions below to first download the data files and second install the R packages. Before beginning the tutorial, we assume the reader has successfully installed the chosen R package on their computer and has saved the required data files to an appropriate directory from which they will be read. Full instructions for how to do this are provided with software distributions.\nTo work though the different tutorial I would recommend to create a folder where you will save your different R scripts for the tutorials.\nIn addition, the tutorial is here to help researchers in their coding and understanding of models and outputs, but it is required that you read and understand the literature in quantitative genetics and animal model.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
@@ -87,6 +87,26 @@
     "text": "1.2 R\nYou should check that you have the most current version of R and R packages. You can check the number of the current version on CRAN. If you need to update (or install) R packages, use install.packages() and follow the prompted instructions.\n\n1.2.1 R packages\n\n1.2.1.1 asreml-r\nASReml-R is commercial software published by VSN international (http://www.vsni.co.uk/software/asreml/). This package is not free and requires a key access. Additional information and guide can be find in the Asreml-R manual VSNI has provided a 12 months free Asreml-R licence to support the development of this guide. In addition, VSNI also features a blog with data analytics guides and opinions (https://vsni.co.uk/blogs/) as well as private courses.\n\n\n1.2.1.2 gremlin\ngremlin is a little monster appearing if you feed a mugwai after midnight. It is also a great and promising software written by Matthew E. Wolak to fit mixed models using a frequentist approach .\n\n\n1.2.1.3 MCMCglmm\nMCMCglmm is an R package for Bayesian mixed model analysis written by Jarrod Hadfield. It is a freeware distributed through CRAN (http://cran.r-project.org/). Information and guide about the package can be find in the user manual and vignettes (http://cran.r-project.org/web/packages/MCMCglmm/index.html). Reference: (Hadfield 2010).\nThis module provides some information that applies to MCMCglmm-based analyses in general, but that will not be included in other tutorials. Most importantly, this applies to some of the simplest ways of determining the performance of a run using MCMCglmm, i.e., verification of the validity of of the posterior distribution. This tutorial is not a substitute for working through the MCMCglmm course notes, which is available from CRAN (the Comprehensive R ArchiveNetwork, http://cran.r-project.org/, or can be accessed in R using the command vignette(“CourseNotes”,“MCMCglmm”)). These tutorials do not introduce one of the main advantages of using MCMCglmm for analyses of data from natural populations -the ability to properly model non-normal responses. These capabilities are introduced in the documentation that is distributed with MCMCglmm, and available from CRAN. Another specific animal guide for MCMCglmm can be find (https://devillemereuil.legtux.org/wp-content/uploads/2021/09/tuto_en.pdf). Pr. Pierre de Villemereuil provide more information in Bayesian concept and focus more on non-gaussian variable.\n\n\n1.2.1.4 brms\nbrms provides an interface to fit Bayesian generalized multivariate (non-)linear multilevel models using Stan, which is a C++ package for obtaining full Bayesian inference (see https://mc-stan.org/). The formula syntax is an extended version of the syntax applied in the ‘lme4’ package to provide a familiar and simple interface for performing regression analyses.\nIt should be noted that if brms is able to fit animal model the parametrization used is not the most efficient and can take quite longer than using a different parametrization directly in stan.\n\n\n\n\nHadfield, J. D. 2010. MCMC methods for multi-response generalized linear mixed models: The MCMCglmm R package. Journal of Statistical Software 33:1–22.\n\n\nMartin, J., M. Wolak, S. Johnston, and M. Morrissey. 2024. Pedtricks: Visualize, summarize and simulate data from pedigrees.\n\n\nWilson, A. J., D. Réale, M. N. Clements, M. M. Morrissey, E. Postma, C. A. Walling, L. E. B. Kruuk, and D. H. Nussey. 2010. An ecologist’s guide to the animal model. Journal of Animal Ecology 79:13–26.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "02_00-univ.html",
+    "href": "02_00-univ.html",
+    "title": "Univariate animal model",
+    "section": "",
+    "text": "Scenario and data\nThis tutorial will demonstrate how to run a univariate animal model to estimate genetic variance in birth weight in the mighty gryphons.",
+    "crumbs": [
+      "Univariate animal model"
+    ]
+  },
+  {
+    "objectID": "02_00-univ.html#scenario-and-data",
+    "href": "02_00-univ.html#scenario-and-data",
+    "title": "Univariate animal model",
+    "section": "",
+    "text": "Scenario\nIn a population of gryphons there is strong positive selection on birth weight with heavier born individuals having, on average higher fitness. To find out whether increased birth weight will evolve in response to the selection, and if so how quickly, we want to estimate the heritability of birth weight.\nData files\nOpen gryphonped.csv and gryphon.csv in your text editor. The structure and contents of these files is fairly self-explanatory. The pedigree file gryphonped.csv contains three columns containing unique IDs that correspond to each animal, its father, and its mother. Note that this is a multigenerational pedigree, with the earliest generation (for which parentage information is necessarily missing) at the beginning of the file. For later-born individuals maternal identities are all known but paternity information is incomplete (a common situation in real world applications).\nThe phenotype data, as well as additional factors and covariates that we may wish to include in our model are contained in gryphon.csv. Columns correspond to individual identity (animal), maternal identity (mother), year of birth (byear), sex (sex, where 1 is female and 2 is male), birth weight (bwt), and tarsus length (tarsus). Each row of the data file contains a record for a different offspring individual. Note that all individuals included in the data file must be included as offspring in the pedigree file.\nWe can read the data file, using read.csv() which consider by default that NA is the symbol for missing values and that the first line of the file contains the column headers.\nIt is a good idea to make sure that all variables are correctly assigned as numeric or factors:\n\ngryphon$animal &lt;- as.factor(gryphon$animal)\ngryphon$mother &lt;- as.factor(gryphon$mother)\ngryphon$byear &lt;- as.factor(gryphon$byear)\ngryphon$sex &lt;- as.factor(gryphon$sex)\ngryphon$bwt &lt;- as.numeric(gryphon$bwt)\ngryphon$tarsus &lt;- as.numeric(gryphon$tarsus)\nstr(gryphon)\n\n'data.frame':   1084 obs. of  6 variables:\n $ animal: Factor w/ 1084 levels \"1\",\"2\",\"3\",\"5\",..: 864 1076 549 989 1030 751 987 490 906 591 ...\n $ mother: Factor w/ 429 levels \"1\",\"2\",\"3\",\"8\",..: 362 268 216 375 396 289 328 255 347 240 ...\n $ byear : Factor w/ 34 levels \"968\",\"970\",\"971\",..: 1 1 2 2 2 2 3 3 3 3 ...\n $ sex   : Factor w/ 2 levels \"1\",\"2\": 1 1 2 1 2 1 2 1 1 1 ...\n $ bwt   : num  10.77 9.3 3.98 5.39 12.12 ...\n $ tarsus: num  24.8 22.5 12.9 20.5 NA ...\n\n\nSimilarly we can read in the pedigree file, using read.csv() which consider by default that NA is the symbol for missing values and that the first line of the file contains the column headers.\n\n\n'data.frame':   1309 obs. of  3 variables:\n $ id    : int  1306 1304 1298 1293 1290 1288 1284 1283 1282 1278 ...\n $ father: int  NA NA NA NA NA NA NA NA NA NA ...\n $ mother: int  NA NA NA NA NA NA NA NA NA NA ...\n\n\n\ngryphonped$id &lt;- as.factor(gryphonped$id)\ngryphonped$father &lt;- as.factor(gryphonped$father)\ngryphonped$mother &lt;- as.factor(gryphonped$mother)\nstr(gryphonped)\n\n'data.frame':   1309 obs. of  3 variables:\n $ id    : Factor w/ 1309 levels \"1\",\"2\",\"3\",\"4\",..: 1306 1304 1298 1293 1290 1288 1284 1283 1282 1278 ...\n $ father: Factor w/ 158 levels \"4\",\"13\",\"18\",..: NA NA NA NA NA NA NA NA NA NA ...\n $ mother: Factor w/ 429 levels \"1\",\"2\",\"3\",\"8\",..: NA NA NA NA NA NA NA NA NA NA ...\n\n\nNow that we have imported the data and the pedigree file, we are ready to fit an animal model.\n\n\n\n\nWilson, A. J., D. Réale, M. N. Clements, M. M. Morrissey, E. Postma, C. A. Walling, L. E. B. Kruuk, and D. H. Nussey. 2010. An ecologist’s guide to the animal model. Journal of Animal Ecology 79:13–26.",
+    "crumbs": [
+      "Univariate animal model"
     ]
   },
   {
@@ -123,6 +143,26 @@
     ]
   },
   {
+    "objectID": "03_00-biv.html",
+    "href": "03_00-biv.html",
+    "title": "Multivariate animal model",
+    "section": "",
+    "text": "Scenario and data\nThis tutorial will demonstrate how to run a multivariate animal model looking at birth weight and tarsus length of the phenomenal gryphons.",
+    "crumbs": [
+      "Multivariate animal model"
+    ]
+  },
+  {
+    "objectID": "03_00-biv.html#scenario-and-data",
+    "href": "03_00-biv.html#scenario-and-data",
+    "title": "Multivariate animal model",
+    "section": "",
+    "text": "Scenario\nSince natural selection rarely acts on single traits, to understand how birth weight might evolve in our population of gryphons, we may also want to think about possible covariance with other traits. If tarsus length at fledging is also under positive selection, what implications does it have for birth weight and vice versa? If the two traits are positively genetically correlated then this will facilitate evolution of larger size (since response of one trait will induce a positively correlated response in the other). If there is negative genetic covariance then this could act as an evolutionary constraint.\nUsing multivariate models allows the estimation of parameters relating to each trait alone (i.e. \\(V_A\\), \\(h^2\\), etc), but also yields estimates of covariance components between traits. These include the (additive) genetic covariance \\(COV_A\\) which is often rescaled to give the additive genetic correlation \\(r_A\\). However, covariance can also arise through other random effects (e.g. maternal covariance) and these sources can also be explicitly modeled in a bivariate analysis.\ngryphon files\ngryphonpedigree and phenotypic data files are the same as those used in tutorial 1 (i.e, gryphonped.csv and gryphon.csv respectively).\nReading the data\n\ngryphon &lt;- read.csv(\"data/gryphon.csv\")\ngryphon$animal &lt;- as.factor(gryphon$animal)\ngryphon$mother &lt;- as.factor(gryphon$mother)\ngryphon$byear &lt;- as.factor(gryphon$byear)\ngryphon$sex &lt;- as.factor(gryphon$sex)\ngryphon$bwt &lt;- as.numeric(gryphon$bwt)\ngryphon$tarsus &lt;- as.numeric(gryphon$tarsus)\n\nReading the pedigree\n\ngryphonped &lt;- read.csv(\"data/gryphonped.csv\")\ngryphonped$id &lt;- as.factor(gryphonped$id)\ngryphonped$father &lt;- as.factor(gryphonped$father)\ngryphonped$mother &lt;- as.factor(gryphonped$mother)\n\n\n\n\n\nWilson, A. J., D. Réale, M. N. Clements, M. M. Morrissey, E. Postma, C. A. Walling, L. E. B. Kruuk, and D. H. Nussey. 2010. An ecologist’s guide to the animal model. Journal of Animal Ecology 79:13–26.",
+    "crumbs": [
+      "Multivariate animal model"
+    ]
+  },
+  {
     "objectID": "03_01-biv_asreml.html",
     "href": "03_01-biv_asreml.html",
     "title": "5  Asreml-R",
@@ -153,6 +193,26 @@
     "crumbs": [
       "Multivariate animal model",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>brms</span>"
+    ]
+  },
+  {
+    "objectID": "04_00-rep.html",
+    "href": "04_00-rep.html",
+    "title": "A repeated measures animal model",
+    "section": "",
+    "text": "Scenario and data\nThis tutorial will demonstrate how to run a univariate animal model for a trait with repeated observations using different R packages with an example data files provided.",
+    "crumbs": [
+      "A repeated measures animal model"
+    ]
+  },
+  {
+    "objectID": "04_00-rep.html#scenario-and-data",
+    "href": "04_00-rep.html#scenario-and-data",
+    "title": "A repeated measures animal model",
+    "section": "",
+    "text": "scenario\nSince gryphons are iteroparous, multiple observations of reproductive traits are available for some individuals. Here we have repeated measures of lay date (measured in days after January 1) for individual females varying in age from 2 (age of sexual maturation) up until age 6. Not all females lay every year so the number of observations per female is variable (between 1 to 5). We want to know how repeatable the trait is, and (assuming it is repeatable) how heritable it is.\nData files\nThe pedigree file gryphonped.csv is that used in the preceding tutorials but we now use a new data file gryphonRM.csv. Columns correspond to individual identity (animal), birth year (byear), age in years (age), year of measurement (year) and lay date (laydate).  Each row of the data file corresponds to a single phenotypic observation. Here the data is sorted by identity and then age so that the repeated observations on individuals are apparent. However this is not a requirement for analysis - data could equally be sorted by some other variable (e.g., measurement year) or be in a random order.\n\nstr(gryphonRM)\n\n'data.frame':   1607 obs. of  5 variables:\n $ animal : Factor w/ 469 levels \"1\",\"2\",\"3\",\"8\",..: 1 1 1 1 1 2 2 2 3 3 ...\n $ byear  : Factor w/ 34 levels \"968\",\"970\",\"971\",..: 22 22 22 22 22 22 22 22 22 22 ...\n $ age    : Factor w/ 5 levels \"2\",\"3\",\"4\",\"5\",..: 1 2 3 4 5 1 2 3 1 2 ...\n $ year   : Factor w/ 39 levels \"970\",\"971\",\"972\",..: 23 24 25 26 27 23 24 25 23 24 ...\n $ laydate: num  19 23 24 23 29 21 17 21 20 20 ...\n\nsummary(gryphonRM)\n\n     animal         byear      age          year         laydate     \n 1      :   5   1000   : 109   2:308   1004   :  79   Min.   : 0.00  \n 3      :   5   1001   :  98   3:322   1005   :  78   1st Qu.:20.00  \n 9      :   5   999    :  86   4:339   1003   :  69   Median :24.00  \n 17     :   5   1002   :  85   5:315   1006   :  64   Mean   :23.54  \n 42     :   5   987    :  70   6:323   1002   :  60   3rd Qu.:27.00  \n 50     :   5   989    :  66           988    :  54   Max.   :41.00  \n (Other):1577   (Other):1093           (Other):1203                  \n\nhead(gryphonRM)\n\n  animal byear age year laydate\n1      1   990   2  992      19\n2      1   990   3  993      23\n3      1   990   4  994      24\n4      1   990   5  995      23\n5      1   990   6  996      29\n6      2   990   2  992      21\n\n\n\n\n\n\n\nWilson, A. J., D. Réale, M. N. Clements, M. M. Morrissey, E. Postma, C. A. Walling, L. E. B. Kruuk, and D. H. Nussey. 2010. An ecologist’s guide to the animal model. Journal of Animal Ecology 79:13–26.",
+    "crumbs": [
+      "A repeated measures animal model"
     ]
   },
   {
@@ -280,66 +340,6 @@
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>A</span>  <span class='chapter-title'>Data used in this book</span>"
-    ]
-  },
-  {
-    "objectID": "03_00-biv.html",
-    "href": "03_00-biv.html",
-    "title": "Multivariate animal model",
-    "section": "",
-    "text": "Scenario and data",
-    "crumbs": [
-      "Multivariate animal model"
-    ]
-  },
-  {
-    "objectID": "03_00-biv.html#scenario-and-data",
-    "href": "03_00-biv.html#scenario-and-data",
-    "title": "Multivariate animal model",
-    "section": "",
-    "text": "Scenario\nSince natural selection rarely acts on single traits, to understand how birth weight might evolve in our population of gryphons, we may also want to think about possible covariance with other traits. If tarsus length at fledging is also under positive selection, what implications does it have for birth weight and vice versa? If the two traits are positively genetically correlated then this will facilitate evolution of larger size (since response of one trait will induce a positively correlated response in the other). If there is negative genetic covariance then this could act as an evolutionary constraint.\nUsing multivariate models allows the estimation of parameters relating to each trait alone (i.e. \\(V_A\\), \\(h^2\\), etc), but also yields estimates of covariance components between traits. These include the (additive) genetic covariance \\(COV_A\\) which is often rescaled to give the additive genetic correlation \\(r_A\\). However, covariance can also arise through other random effects (e.g. maternal covariance) and these sources can also be explicitly modeled in a bivariate analysis.\ngryphon files\ngryphonpedigree and phenotypic data files are the same as those used in tutorial 1 (i.e, gryphonped.csv and gryphon.csv respectively).\nReading the data\n\ngryphon &lt;- read.csv(\"data/gryphon.csv\")\ngryphon$animal &lt;- as.factor(gryphon$animal)\ngryphon$mother &lt;- as.factor(gryphon$mother)\ngryphon$byear &lt;- as.factor(gryphon$byear)\ngryphon$sex &lt;- as.factor(gryphon$sex)\ngryphon$bwt &lt;- as.numeric(gryphon$bwt)\ngryphon$tarsus &lt;- as.numeric(gryphon$tarsus)\n\nReading the pedigree\n\ngryphonped &lt;- read.csv(\"data/gryphonped.csv\")\ngryphonped$id &lt;- as.factor(gryphonped$id)\ngryphonped$father &lt;- as.factor(gryphonped$father)\ngryphonped$mother &lt;- as.factor(gryphonped$mother)\n\n\n\n\n\nWilson, A. J., D. Réale, M. N. Clements, M. M. Morrissey, E. Postma, C. A. Walling, L. E. B. Kruuk, and D. H. Nussey. 2010. An ecologist’s guide to the animal model. Journal of Animal Ecology 79:13–26.",
-    "crumbs": [
-      "Multivariate animal model"
-    ]
-  },
-  {
-    "objectID": "04_00-rep.html",
-    "href": "04_00-rep.html",
-    "title": "A repeated measures animal model",
-    "section": "",
-    "text": "Scenario and data",
-    "crumbs": [
-      "A repeated measures animal model"
-    ]
-  },
-  {
-    "objectID": "04_00-rep.html#scenario-and-data",
-    "href": "04_00-rep.html#scenario-and-data",
-    "title": "A repeated measures animal model",
-    "section": "",
-    "text": "scenario\nSince gryphons are iteroparous, multiple observations of reproductive traits are available for some individuals. Here we have repeated measures of lay date (measured in days after January 1) for individual females varying in age from 2 (age of sexual maturation) up until age 6. Not all females lay every year so the number of observations per female is variable (between 1 to 5). We want to know how repeatable the trait is, and (assuming it is repeatable) how heritable it is.\nData files\nThe pedigree file gryphonped.csv is that used in the preceding tutorials but we now use a new data file gryphonRM.csv. Columns correspond to individual identity (animal), birth year (byear), age in years (age), year of measurement (year) and lay date (laydate).  Each row of the data file corresponds to a single phenotypic observation. Here the data is sorted by identity and then age so that the repeated observations on individuals are apparent. However this is not a requirement for analysis - data could equally be sorted by some other variable (e.g., measurement year) or be in a random order.\n\nstr(gryphonRM)\n\n'data.frame':   1607 obs. of  5 variables:\n $ animal : Factor w/ 469 levels \"1\",\"2\",\"3\",\"8\",..: 1 1 1 1 1 2 2 2 3 3 ...\n $ byear  : Factor w/ 34 levels \"968\",\"970\",\"971\",..: 22 22 22 22 22 22 22 22 22 22 ...\n $ age    : Factor w/ 5 levels \"2\",\"3\",\"4\",\"5\",..: 1 2 3 4 5 1 2 3 1 2 ...\n $ year   : Factor w/ 39 levels \"970\",\"971\",\"972\",..: 23 24 25 26 27 23 24 25 23 24 ...\n $ laydate: num  19 23 24 23 29 21 17 21 20 20 ...\n\nsummary(gryphonRM)\n\n     animal         byear      age          year         laydate     \n 1      :   5   1000   : 109   2:308   1004   :  79   Min.   : 0.00  \n 3      :   5   1001   :  98   3:322   1005   :  78   1st Qu.:20.00  \n 9      :   5   999    :  86   4:339   1003   :  69   Median :24.00  \n 17     :   5   1002   :  85   5:315   1006   :  64   Mean   :23.54  \n 42     :   5   987    :  70   6:323   1002   :  60   3rd Qu.:27.00  \n 50     :   5   989    :  66           988    :  54   Max.   :41.00  \n (Other):1577   (Other):1093           (Other):1203                  \n\nhead(gryphonRM)\n\n  animal byear age year laydate\n1      1   990   2  992      19\n2      1   990   3  993      23\n3      1   990   4  994      24\n4      1   990   5  995      23\n5      1   990   6  996      29\n6      2   990   2  992      21\n\n\n\n\n\n\n\nWilson, A. J., D. Réale, M. N. Clements, M. M. Morrissey, E. Postma, C. A. Walling, L. E. B. Kruuk, and D. H. Nussey. 2010. An ecologist’s guide to the animal model. Journal of Animal Ecology 79:13–26.",
-    "crumbs": [
-      "A repeated measures animal model"
-    ]
-  },
-  {
-    "objectID": "02_00-univ.html",
-    "href": "02_00-univ.html",
-    "title": "Univariate animal model",
-    "section": "",
-    "text": "Scenario and data",
-    "crumbs": [
-      "Univariate animal model"
-    ]
-  },
-  {
-    "objectID": "02_00-univ.html#scenario-and-data",
-    "href": "02_00-univ.html#scenario-and-data",
-    "title": "Univariate animal model",
-    "section": "",
-    "text": "Scenario\nIn a population of gryphons there is strong positive selection on birth weight with heavier born individuals having, on average higher fitness. To find out whether increased birth weight will evolve in response to the selection, and if so how quickly, we want to estimate the heritability of birth weight.\nData files\nOpen gryphonped.csv and gryphon.csv in your text editor. The structure and contents of these files is fairly self-explanatory. The pedigree file gryphonped.csv contains three columns containing unique IDs that correspond to each animal, its father, and its mother. Note that this is a multigenerational pedigree, with the earliest generation (for which parentage information is necessarily missing) at the beginning of the file. For later-born individuals maternal identities are all known but paternity information is incomplete (a common situation in real world applications).\nThe phenotype data, as well as additional factors and covariates that we may wish to include in our model are contained in gryphon.csv. Columns correspond to individual identity (animal), maternal identity (mother), year of birth (byear), sex (sex, where 1 is female and 2 is male), birth weight (bwt), and tarsus length (tarsus). Each row of the data file contains a record for a different offspring individual. Note that all individuals included in the data file must be included as offspring in the pedigree file.\nWe can read the data file, using read.csv() which consider by default that NA is the symbol for missing values and that the first line of the file contains the column headers.\nIt is a good idea to make sure that all variables are correctly assigned as numeric or factors:\n\ngryphon$animal &lt;- as.factor(gryphon$animal)\ngryphon$mother &lt;- as.factor(gryphon$mother)\ngryphon$byear &lt;- as.factor(gryphon$byear)\ngryphon$sex &lt;- as.factor(gryphon$sex)\ngryphon$bwt &lt;- as.numeric(gryphon$bwt)\ngryphon$tarsus &lt;- as.numeric(gryphon$tarsus)\nstr(gryphon)\n\n'data.frame':   1084 obs. of  6 variables:\n $ animal: Factor w/ 1084 levels \"1\",\"2\",\"3\",\"5\",..: 864 1076 549 989 1030 751 987 490 906 591 ...\n $ mother: Factor w/ 429 levels \"1\",\"2\",\"3\",\"8\",..: 362 268 216 375 396 289 328 255 347 240 ...\n $ byear : Factor w/ 34 levels \"968\",\"970\",\"971\",..: 1 1 2 2 2 2 3 3 3 3 ...\n $ sex   : Factor w/ 2 levels \"1\",\"2\": 1 1 2 1 2 1 2 1 1 1 ...\n $ bwt   : num  10.77 9.3 3.98 5.39 12.12 ...\n $ tarsus: num  24.8 22.5 12.9 20.5 NA ...\n\n\nSimilarly we can read in the pedigree file, using read.csv() which consider by default that NA is the symbol for missing values and that the first line of the file contains the column headers.\n\n\n'data.frame':   1309 obs. of  3 variables:\n $ id    : int  1306 1304 1298 1293 1290 1288 1284 1283 1282 1278 ...\n $ father: int  NA NA NA NA NA NA NA NA NA NA ...\n $ mother: int  NA NA NA NA NA NA NA NA NA NA ...\n\n\n\ngryphonped$id &lt;- as.factor(gryphonped$id)\ngryphonped$father &lt;- as.factor(gryphonped$father)\ngryphonped$mother &lt;- as.factor(gryphonped$mother)\nstr(gryphonped)\n\n'data.frame':   1309 obs. of  3 variables:\n $ id    : Factor w/ 1309 levels \"1\",\"2\",\"3\",\"4\",..: 1306 1304 1298 1293 1290 1288 1284 1283 1282 1278 ...\n $ father: Factor w/ 158 levels \"4\",\"13\",\"18\",..: NA NA NA NA NA NA NA NA NA NA ...\n $ mother: Factor w/ 429 levels \"1\",\"2\",\"3\",\"8\",..: NA NA NA NA NA NA NA NA NA NA ...\n\n\nNow that we have imported the data and the pedigree file, we are ready to fit an animal model.\n\n\n\n\nWilson, A. J., D. Réale, M. N. Clements, M. M. Morrissey, E. Postma, C. A. Walling, L. E. B. Kruuk, and D. H. Nussey. 2010. An ecologist’s guide to the animal model. Journal of Animal Ecology 79:13–26.",
-    "crumbs": [
-      "Univariate animal model"
     ]
   }
 ]
